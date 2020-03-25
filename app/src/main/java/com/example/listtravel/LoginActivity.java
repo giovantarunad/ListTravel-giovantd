@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.listtravel.Models.Session;
@@ -16,12 +17,19 @@ public class LoginActivity extends AppCompatActivity{
     private Session session;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         usernameInput = findViewById(R.id.input_description);
-        passwordInput = findViewById(R.id.textInputEditText);
+        passwordInput = findViewById(R.id.input_description2);
+        session = Application.getSession();
+
+        if (session.isKeepUsername()) {
+            usernameInput.setText(session.getUsername());
+        }
     }
+
 
     public void handleLogin(View view) {
         String username = usernameInput.getText().toString();
@@ -29,6 +37,9 @@ public class LoginActivity extends AppCompatActivity{
 
         boolean success = session.validate(username, password);
         if (success) {
+            if (session.isKeepUsername()) {
+                session.setUsername(username);
+            }
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

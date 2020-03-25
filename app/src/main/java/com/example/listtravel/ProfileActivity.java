@@ -19,8 +19,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        name = findViewById(R.id.name);
-        email = findViewById(R.id.textView3);
+        name = findViewById(R.id.input_description);
+        email = findViewById(R.id.input_description2);
         foto = findViewById(R.id.foto);
 
         Bundle extras = getIntent().getExtras();

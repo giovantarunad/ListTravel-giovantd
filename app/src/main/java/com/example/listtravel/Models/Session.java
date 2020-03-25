@@ -1,19 +1,19 @@
 package com.example.listtravel.Models;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.example.listtravel.LoginActivity;
-
 public class Session {
-
     private static final String USERNAME_KEY = "key_username";
     private static final String TOKEN_KEY = "key_token";
-    SharedPreferences.Editor editor;
-    Context context;
+    private static final String KEEP_USERNAME_KEY = "key_keep_username";
+
     private SharedPreferences preferences;
+
+    public boolean isKeepUsername() {
+        return preferences.getBoolean(KEEP_USERNAME_KEY, false);
+    }
 
     public Session(Context context) {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -46,22 +46,8 @@ public class Session {
         return false;
     }
 
-    public void checkLogin() {
-        if (!this.isLoggedIn()) {
-            Intent i = new Intent(context, LoginActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
-        }
-    }
-
-    public void logoutUser() {
-        editor.clear();
-        editor.commit();
-
-        Intent i = new Intent(context, LoginActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+    public void logout() {
+        preferences.edit().remove(TOKEN_KEY)
+                .apply();
     }
 }

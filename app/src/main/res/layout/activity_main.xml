@@ -135,17 +135,4 @@
 
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/out"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginRight="64dp"
-        android:layout_marginBottom="16dp"
-        android:text="Sign Out"
-        android:textSize="16sp"
-        android:theme="@style/Theme.MaterialComponents.Light"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:cornerRadius="50dp" />
-
 </LinearLayout>
