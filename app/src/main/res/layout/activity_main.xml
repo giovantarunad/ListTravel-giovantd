@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="monospace"
-                android:text="Travelindo"
+                android:text="Travel Jatim"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="italic" />

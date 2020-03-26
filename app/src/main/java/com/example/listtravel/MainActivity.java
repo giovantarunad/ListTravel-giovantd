@@ -1,75 +1,100 @@
 package com.example.listtravel;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.listtravel.Adapter.AlertDialogManager;
-import com.example.listtravel.Models.Session;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private Session session;
     public static final String NAME_KEY = "name";
+    public static final String EMAIL_KEY = "email";
     public static final String FOTO_KEY = "foto";
-    private EditText nameInput, emailInput;
+
+    private EditText nameInput;
+    private EditText emailInput;
+
+    private static final String TAG = MainActivity.class.getCanonicalName();
     private static final int GALERY_REQUEST_CODE = 1;
+
     private ImageView fotoInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle extras = getIntent().getExtras();
+
         fotoInput = findViewById(R.id.foto);
+
         nameInput = findViewById(R.id.input_description);
         emailInput = findViewById(R.id.input_description2);
-
-        session = Application.getSession();
-        if (!session.isLoggedIn()) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_CANCELED){
+            return;
+        }
+        if(requestCode == GALERY_REQUEST_CODE){
+            if(data != null){
+                try{
+                    Uri imageUri = data.getData();
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    fotoInput.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    Toast.makeText(this, "Can't load image", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, e.getMessage());
+                }
+            }
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void handleFoto(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, GALERY_REQUEST_CODE);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.action_logout) {
-            session.logout();
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            return true;
+    public void handleSubmit(View view) {
+        String name = nameInput.getText().toString();
+
+        if(name.equals("")){
+            Toast.makeText(getApplicationContext(), "Input your name!", Toast.LENGTH_SHORT).show();
         }
-        return super.onOptionsItemSelected(item);
+        else {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            fotoInput.buildDrawingCache();
+
+            Bitmap foto = fotoInput.getDrawingCache();
+
+            Bundle extras = new Bundle();
+            extras.putParcelable(FOTO_KEY, foto);
+
+            intent.putExtras(extras);
+            intent.putExtra(NAME_KEY, name);
+            startActivity(intent);
+
+        }
+    }
+    public void profileMenu(View v) {
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
+    }
+
+    public void historyMenu(View v) {
+        Intent i = new Intent(this, ListActivity.class);
+        startActivity(i);
     }
 }
