@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">" Jatim E-Wisata "</string>
+    <string name="profile">Profile</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Input your name</string>
+    <string name="email">Name</string>
+    <string name="email_hint">Input your email</string>
+    <string name="start">Start</string>
 </resources>
