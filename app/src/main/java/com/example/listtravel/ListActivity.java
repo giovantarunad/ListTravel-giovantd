@@ -45,9 +45,13 @@ public class ListActivity extends AppCompatActivity implements MyAdapter.Onclick
     //    add models to arraylist
     private void getPlayers(){
         ArrayList<Model> models = new ArrayList<>();
-        Model p = new Model("Gunung Bromo", "Probolinggo","Gunung Bromo (dari bahasa Sanskerta: Brahma, salah seorang Dewa Utama dalam agama Hindu) atau dalam bahasa Tengger dieja \"Brama\", adalah sebuah gunung berapi aktif di Jawa Timur, Indonesia. Gunung ini memiliki ketinggian 2.329 meter di atas permukaan laut dan berada dalam empat wilayah kabupaten, yakni Kabupaten Probolinggo, Kabupaten Pasuruan, Kabupaten Lumajang, dan Kabupaten Malang. Gunung Bromo terkenal sebagai objek wisata utama di Jawa Timur. Sebagai sebuah objek wisata, Bromo menjadi menarik karena statusnya sebagai gunung berapi yang masih aktif. Gunung Bromo termasuk dalam kawasan Taman Nasional Bromo Tengger Semeru. bromo itu sendiri sudah menjadi salah satu destinasi wisata favorite yang ada di indonesia. banyak wisatawan yang berkunjung ke bromo mulai dari wisatawan domestik sama asing.","https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngimage.net%2Fgunung-bromo-png-2%2F&psig=AOvVaw3ZTGqla78mVqm_v-bM8eSw&ust=1585887400307000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIiPo6LxyOgCFQAAAAAdAAAAABAD");
+        Model p = new Model("Gunung Ijen", "Banyuwangi","Rp 65.000","Gunung/Kawah","Kawah Ijen adalah sebuah danau kawah yang bersifat asam yang berada di puncak Gunung Ijen dengan kedalaman danau 200 meter dan luas kawah mencapai 5.466 Hektar. Danau kawah Ijen dikenal merupakan danau air asam kuat terbesar di dunia[1]. Kawah Ijen berada dalam wilayah Cagar Alam Taman Wisata Ijen Kabupaten Bondowoso dan Kabupaten Banyuwangi, Jawa Timur. Fenomena eternal blue fire atau api biru abadi berada di dalam kawah Ijen, dan pemandangan alami ini hanya terjadi di dua tempat di dunia yaitu Islandia dan Ijen. Blue fire hanya dapat dilihat oleh mata manusia saat tidak ada cahaya, karenanya waktu ideal untuk melihatnya adalah jam 2 hingga jam 4 dinihari, karena pendakian Gunung Ijen baru mulai dibuka jam 2 dinihari. Dari Kawah Ijen, kita dapat melihat pemandangan gunung lain yang ada di kompleks Pegunungan Ijen, di antaranya adalah puncak Gunung Marapi yang berada di timur Kawah Ijen, Gunung Raung, Gunung Suket, dan Gunung Rante.","https://id.wikipedia.org/wiki/Berkas:Kawah_Ijen_-East_Java_-Indonesia-31July2009.jpg");
         models.add(p);
-        p = new Model("Kawah Ijen","Banyuwangi","Gunung Ijen adalah sebuah gunung berapi yang terletak di perbatasan antara Kabupaten Banyuwangi dan Kabupaten Bondowoso, Jawa Timur, Indonesia. Gunung ini memiliki ketinggian 2.386 mdpl dan terletak berdampingan dengan Gunung Marapi. Gunung Ijen terakhir meletus pada tahun 1999. Salah satu fenomena alam yang paling terkenal dari Gunung Ijen adalah blue fire di dalam kawah yang terletak di puncaknya. Pendakian gunung ini bisa dimulai dari dua tempat. Pendaki bisa berangkat dari Banyuwangi ataupun dari Bondowoso.","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.asliindonesia.net%2Fbeauty-of-ijen-crater%2Fkawah-ijen-jpg%2F&psig=AOvVaw0K_-vzzG4iUzcz_QjaENQg&ust=1585887926989000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOCksMXzyOgCFQAAAAAdAAAAABAD");
+        p = new Model("Gili Ketapang", "Probolinggo","Rp 65.000","Pulau","Gili Ketapang adalah sebuah desa dan pulau kecil di Selat Madura, tepatnya 8 km di lepas pantai utara Probolinggo. Secara administratif, pulau ini termasuk wilayah Kecamatan Sumberasih, Kabupaten Probolinggo, Jawa Timur.\n" +
+                "\n" +
+                "Luas wilayahnya sekitar 68 ha, dan jumlah penduduknya 7.600 jiwa (2004), yang sebagian besar adalah Suku Madura dan bermata pencaharian sebagai nelayan. Penduduk pulau ini dikenal relatif makmur. Gili Ketapang merupakan salah satu tujuan wisata alam di Kabupaten Probolinggo. Pulau terebut dihubungkan dengan Pulau Jawa dengan perahu motor melalui Pelabuhan Tanjung Tembaga, Kota Probolinggo, dengan waktu tempuh sekitar 30 menit.\n" +
+                "\n" +
+                "Menurut legenda setempat, pulau ini dulunya menyatu dengan daratan Desa Ketapang (Pulau Jawa), yang kemudian secara gaib bergerak lamban ke tengah laut, karena gempa yang dahsyat akibat letusan Gunung Semeru. Nama Gili Ketapang berasal dari bahasa Madura, gili yang artinya mengalir, dan Ketapang merupakan nama asal desa tersebut. ","asasa");
         models.add(p);
 
         String mShortSetting = preferences.getString ( "Sort", "Ascending" );
@@ -66,9 +70,11 @@ public class ListActivity extends AppCompatActivity implements MyAdapter.Onclick
     }
     @Override
     public void clickItem(Model model) {
-        Intent intent = new Intent(ListActivity.this, DetailActivity.class);
+        Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("nama", model.getNama());
         intent.putExtra("asal", model.getAsal());
+        intent.putExtra("Harga", model.getHarga());
+        intent.putExtra("Jenis", model.getJenis());
         intent.putExtra("desc", model.getDesc());
         intent.putExtra(EXTRA_URL, model.getImg());
         startActivity(intent);

@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nama tempat"
+                android:text="Harga"
                 android:layout_marginTop="8dp"
                 android:textSize="10sp"
                 android:textColor="#ffff"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginTop="5dp"
-                android:text="Nama Tempat"
+                android:text="Harga"
                 android:textColor="#ffff"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,12 +85,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="Jenis"
                 android:layout_marginTop="8dp"
                 android:textSize="10sp"
                 android:textColor="#ffff"
                 android:textStyle="italic"
                 />
+            <TextView
+                android:id="@+id/tv_jenis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="5dp"
+                android:text="@string/app_name"
+                android:textColor="#ffff"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_img"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama" />
         </LinearLayout>
 
     </LinearLayout>
@@ -125,7 +137,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Description Wisata"
+        android:text="Description"
         android:textSize="13sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +152,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="40dp"
-        android:text="description Wisata"
+        android:text="description"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

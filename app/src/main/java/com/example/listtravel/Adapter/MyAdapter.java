@@ -36,11 +36,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         this.filterList = models;
     }
 
-    @Override
-    public Filter getFilter() {
-        return null;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
@@ -55,6 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         myHolder.mNamawisata.setText(model.getNama());
         myHolder.mAsalkota.setText(model.getAsal());
+        myHolder.mHarga.setText(model.getHarga());
         myHolder.mDesc.setText(model.getDesc());
         Picasso.get().load(model.getImg()).into(myHolder.mImageIv);
         myHolder.bind(model, listener);
@@ -68,17 +64,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         return models.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        if (filter == null){
+            filter = new CustomFilter(filterList, this);
+        }
+        return filter;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView mImageIv;
-        TextView mNamawisata, mAsalkota,mDesc;
+        TextView mNamawisata, mAsalkota,mHarga, mJenis,mDesc;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.mImageIv = itemView.findViewById(R.id.ImageView);
             this.mNamawisata = itemView.findViewById(R.id.TextViewNama);
+            this.mHarga = itemView.findViewById(R.id.TextViewHarga);
+            this.mJenis = itemView.findViewById(R.id.TextViewJenis);
             this.mAsalkota = itemView.findViewById(R.id.TextViewAsal);
-            this.mDesc = itemView.findViewById(R.id.text_desc);
+            this.mDesc = itemView.findViewById(R.id.TextViewdesc);
         }
 
         public void bind(final Model model, final Onclick onModelClick){
