@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="monospace"
-                android:text="Travel Jatim"
+                android:text="Wisata Jatim"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="italic" />
@@ -122,9 +122,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imgHistory"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="-4dp"
                     android:gravity="center"
-                    android:text="Info Travel"
+                    android:text="List Wisata"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="#9C27B0"
                     android:textStyle="bold" />
@@ -134,5 +134,19 @@
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/out"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginBottom="16dp"
+        android:text="EXIT"
+        android:onClick="handleexit"
+        android:textSize="16sp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:cornerRadius="50dp" />
 
 </LinearLayout>

@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso;
 import static com.example.listtravel.ListActivity.EXTRA_URL;
 
 public class DetailActivity extends AppCompatActivity {
+
     ImageView imageView;
     TextView tvNamawisata, tvAsalkota,tvHarga, tvJenis, tvDesc;
 

@@ -22,4 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, ListActivity.class);
         startActivity(i);
     }
+
+    public void handleexit(View view) {
+        finish();
+    }
 }

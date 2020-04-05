@@ -52,6 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         myHolder.mAsalkota.setText(model.getAsal());
         myHolder.mHarga.setText(model.getHarga());
         myHolder.mDesc.setText(model.getDesc());
+
         Picasso.get().load(model.getImg()).into(myHolder.mImageIv);
         myHolder.bind(model, listener);
 
